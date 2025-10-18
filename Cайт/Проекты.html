@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>КаркасДом</title>
+    <style>
+      /* Ваши стили + небольшие правки */
+      .header {
+        background-color: #2f4f2f;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: Arial, Helvetica, sans-serif;
+        height: 60px;
+      }
+      .btn-danger {
+        color: #f5f0e6;
+        font-size: 16px;
+        background-color: #2f4f2f;
+        border-radius: 4px;
+        border: 0px;
+        padding: 15px 25px;
+        margin: 10px;
+        text-decoration: none;
+      }
+      body {
+        margin: 0px;
+        background-color: #F5F5DC;
+      }
+      .btn-danger.active {
+        color: #F5F0E6;
+        font-size: 16px;
+        background-color: #558248;
+        border-radius: 4px;
+        border: 0px;
+        padding: 15px 25px;
+        margin: 10px;
+      }
+      main {
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        gap: 40px;
+        padding: 40px 400px;
+       
+      }
+      .filter {
+        background-color: #F5F0E6;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        color: #3c3c3c;
+        width: 260px;
+        user-select: none;
+        border-radius: 10px;
+        padding: 20px;
+        height: 650px;
+        width: 230px;
+      }
+      .filter label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 8px;
+        margin-top: 20px;
+      }
+      .filter .price-range {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .filter input[type="number"] {
+        width: 100px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .filter .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 5px;
+      }
+      .filter .btn-group button {
+        border: 1px solid #ccc;
+        background-color: #F5F0E6;
+        border-radius: 15px;
+        padding: 5px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .filter .btn-group button.active {
+        background-color: #558248;
+        color: #F5F0E6;
+        border-color: #558248;
+      }
+      .filter .btn-group button:hover:not(.active) {
+        background-color: #80b36f;
+        color: #F5F0E6;
+        border-color: #80b36f;
+      }
+      .filter .reset {
+        margin-top: 15px;
+        font-size: 13px;
+        color: #d9534f;
+        cursor: pointer;
+        text-decoration: underline;
+        background: none;
+        border: none;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .projects {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+        max-width: 900px;
+      }
+      .project-card {
+        background-color: #F5F0E6;
+        border-radius: 10px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        width: 320px;
+        padding: 15px 20px 25px 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3c3c3c;
+        height: 370px;
+      }
+      .project-card img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+      .project-title {
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+      .project-subtitle {
+        font-size: 13px;
+        color: #d2691e;
+        margin-bottom: 15px;
+        text-transform: lowercase;
+      }
+      .project-info {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+        font-size: 12px;
+        color: #555;
+      }
+      .project-info div {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .project-info img {
+        width: 16px;
+        height: 16px;
+      }
+      .project-price {
+        font-weight: 700;
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+      .btn-details {
+        background-color: #80b36f;
+        border: none;
+        border-radius: 6px;
+        color: #f5f0e6;
+        padding: 10px 20px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-align: center;
+        display: inline-block;
+        text-decoration: none;
+      }
+      .btn-details:hover {
+        background-color: #558248;
+      }
+      footer {
+      color: #f5f0e6;
+      background-color: #2f4f2f;
+      padding: 10px 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      height: 150px;
+      display: grid;
+      grid-template-columns: 850px 835px 200px;
+      grid-template-rows: 75px 75px;
+      justify-content: start;
+    }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a href="Главная.html"><img src="Логотип 3.png" alt="Логотип" style="margin-left: 25px" /></a>
+      <div>
+        <a href="Проекты.html" class="btn btn-danger active">Проекты</a>
+        <a href="Калькулятор.html" class="btn btn-danger">Калькулятор</a>
+        <a href="Контакты.html" class="btn btn-danger">Контакты</a>
+      </div>
+    </header>
+    <main>
+      <aside class="filter">
+        <label>Цена от и до</label>
+        <div class="price-range">
+          <input type="number" id="price-min" placeholder="2 442 960" />
+          <input type="number" id="price-max" placeholder="4 644 640" />
+        </div>
+
+        <label>Тип проекта:</label>
+        <div class="btn-group" data-filter="type">
+          <button data-value="Большие">Большие</button>
+          <button data-value="Зимние">Зимние</button>
+          <button data-value="Круглогодичные">Круглогодичные</button>
+          <button data-value="С верандой">С верандой</button>
+          <button data-value="С гаражом">С гаражом</button>
+          <button data-value="С террасой">С террасой</button>
+          <button data-value="Небольшие">Небольшие</button>
+          <button data-value="Недорогие">Недорогие</button>
+        </div>
+
+        <label>Площадь:</label>
+        <div class="btn-group" data-filter="area">
+          <button data-value="До 100 кв. м.">До 100 кв. м.</button>
+          <button data-value="До 150 кв. м.">До 150 кв. м.</button>
+          <button data-value="До 200 кв. м.">До 200 кв. м.</button>
+        </div>
+
+        <label>Размеры:</label>
+        <div class="btn-group" data-filter="size">
+          <button data-value="10x10">10x10</button>
+          <button data-value="12x12">12x12</button>
+          <button data-value="6x10">6x10</button>
+          <button data-value="6x6">6x6</button>
+          <button data-value="6x7">6x7</button>
+          <button data-value="6x8">6x8</button>
+          <button data-value="6x9">6x9</button>
+          <button data-value="5x6">5x6</button>
+          <button data-value="7x7">7x7</button>
+          <button data-value="7x8">7x8</button>
+          <button data-value="7x9">7x9</button>
+          <button data-value="8x10">8x10</button>
+        </div>
+
+        <label>Кол-во этажей:</label>
+        <div class="btn-group" data-filter="floors">
+          <button data-value="Двухэтажные">Двухэтажные</button>
+          <button data-value="Одноэтажные">Одноэтажные</button>
+        </div>
+
+        <button class="reset" id="reset-filters">Сбросить фильтр</button>
+      </aside>
+
+      <section class="projects" id="projects">
+        <!-- Пример карточек с data-атрибутами для фильтра -->
+        <article class="project-card"
+          data-price="2442960"
+          data-type="Небольшие,Одноэтажные"
+          data-area="81"
+          data-size="13.5x9.9"
+          data-floors="Одноэтажные"
+        >
+          <img src="1.1.jpg" alt="Проект Г-1" />
+          <div class="project-title">Г-1</div>
+          <div class="project-subtitle">одноэтажный</div>
+          <div class="project-info">
+            <div>
+              <img src="Услуги 3 1.png" alt="Размеры" />
+              <span>13,5x9,9</span>
+            </div>
+            <div>
+              <img src="Услуги 2 1.png" alt="Площадь" />
+              <span>81 м2</span>
+            </div>
+          </div>
+          <div class="project-price">Цена строительства от: 2.442.960 р.</div>
+          <a href="Карточка товара.html" class="btn-details">Подробнее</a>
+        </article>
+
+        <article class="project-card"
+          data-price="2895360"
+          data-type="Небольшие,Одноэтажные"
+          data-area="96"
+          data-size="11x9"
+          data-floors="Одноэтажные"
+        >
+          <img src="2.1.jpg " alt="Проект Г-2" />
+          <div class="project-title">Г-2</div>
+          <div class="project-subtitle">одноэтажный</div>
+          <div class="project-info">
+            <div>
+              <img src="Услуги 3 1.png" alt="Размеры" />
+              <span>11x9</span>
+            </div>
+            <div>
+              <img src="Услуги 2 1.png" alt="Площадь" />
+              <span>96 м2</span>
+            </div>
+          </div>
+          <div class="project-price">Цена строительства от: 2.895.360 р.</div>
+          <a href="#" class="btn-details">Подробнее</a>
+        </article>
+
+        <article class="project-card"
+          data-price="4644640"
+          data-type="Большие,Одноэтажные"
+          data-area="154  "
+          data-size="16x10"
+          data-floors="Одноэтажные"
+        >
+          <img src="3.1.jpg" alt="Проект Г-3" />
+          <div class="project-title">Г-3</div>
+          <div class="project-subtitle">одноэтажный</div>
+          <div class="project-info">
+            <div>
+              <img src="Услуги 3 1.png" alt="Размеры" />
+              <span>16x10</span>
+            </div>
+            <div>
+              <img src="Услуги 2 1.png" alt="Площадь" />
+              <span>154 м2</span>
+            </div>
+          </div>
+          <div class="project-price">Цена строительства от: 4.644.640 р.</div>
+          <a href="#" class="btn-details">Подробнее</a>
+        </article>
+
+        <article class="project-card"
+          data-price="4071600"
+          data-type="Большие, Двухэтажные"
+          data-area="135"
+          data-size="9x10"
+          data-floors="Одноэтажные"
+        >
+          <img src="4.1.jpg" alt="Проект Г-4" />
+          <div class="project-title">Г-4</div>
+          <div class="project-subtitle">с мансардой</div>
+          <div class="project-info">
+            <div>
+              <img src="Услуги 3 1.png" alt="Размеры" />
+              <span>9x10</span>
+            </div>
+            <div>
+              <img src="Услуги 2 1.png" alt="Площадь" />
+              <span>135 м2</span>
+            </div>
+          </div>
+          <div class="project-price">Цена строительства от: 4.071.600 р.</div>
+          <a href="#" class="btn-details">Подробнее</a>
+        </article>
+      </section>
+    </main>
+    <footer>
+      <div style="display: flex; align-items: center; gap: 20px">
+        <img src="Логотип 2 1.png" alt="" />
+        <p>КаркасДом.ru</p>
+      </div>
+      <div>
+        <p>Проекты</p>
+        <p>Калькулятор</p>
+        <p>Контакты</p>
+      </div>
+      <div>
+        <p>Мы в сети:</p>
+        <img src="Почта 2.png" />
+        <img src="Тг.png" />
+        <img src="Вп.png" />
+      </div>
+      <div style="display: grid; align-items: end">
+        <p>©2025 Россия,г.Красноярск. Все права защищены </p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const filters = {
+          priceMin: null,
+          priceMax: null,
+          type: new Set(),
+          area: new Set(),
+          size: new Set(),
+          floors: new Set(),
+        };
+
+        const projects = Array.from(document.querySelectorAll(".project-card"));
+        const priceMinInput = document.getElementById("price-min");
+        const priceMaxInput = document.getElementById("price-max");
+        const resetBtn = document.getElementById("reset-filters");
+
+        // Функция фильтрации
+        function filterProjects() {
+          projects.forEach((project) => {
+            const price = +project.dataset.price;
+            const types = project.dataset.type.split(",");
+            const area = +project.dataset.area;
+            const size = project.dataset.size;
+            const floors = project.dataset.floors;
+
+            // Проверка цены
+            if (
+              (filters.priceMin !== null && price < filters.priceMin) ||
+              (filters.priceMax !== null && price > filters.priceMax)
+            ) {
+              project.style.display = "none";
+              return;
+            }
+
+            // Проверка типа
+            if (
+              filters.type.size > 0 &&
+              !Array.from(filters.type).some((val) => types.includes(val))
+            ) {
+              project.style.display = "none";
+              return;
+            }
+
+            // Проверка площади (по фильтрам "До 100 кв. м." и т.п.)
+            if (filters.area.size > 0) {
+              let areaOk = false;
+              filters.area.forEach((val) => {
+                if (val === "До 100 кв. м." && area <= 100) areaOk = true;
+                if (val === "До 150 кв. м." && area <= 150) areaOk = true;
+                if (val === "До 200 кв. м." && area <= 200) areaOk = true;
+              });
+              if (!areaOk) {
+                project.style.display = "none";
+                return;
+              }
+            }
+
+            // Проверка размера
+            if (filters.size.size > 0 && !filters.size.has(size)) {
+              project.style.display = "none";
+              return;
+            }
+
+            // Проверка этажей
+            if (filters.floors.size > 0 && !filters.floors.has(floors)) {
+              project.style.display = "none";
+              return;
+            }
+
+            project.style.display = "";
+          });
+        }
+
+        // Обработчик кликов по кнопкам фильтра
+        document.querySelectorAll(".filter .btn-group").forEach((group) => {
+          group.addEventListener("click", (e) => {
+            if (e.target.tagName !== "BUTTON") return;
+
+            const filterType = group.dataset.filter;
+            const value = e.target.dataset.value;
+
+            if (e.target.classList.contains("active")) {
+              e.target.classList.remove("active");
+              filters[filterType].delete(value);
+            } else {
+              e.target.classList.add("active");
+              filters[filterType].add(value);
+            }
+
+            filterProjects();
+          });
+        });
+
+        // Обработчики для цены
+        function priceInputHandler() {
+          const minVal = parseInt(priceMinInput.value.replace(/\s/g, ""), 10);
+          const maxVal = parseInt(priceMaxInput.value.replace(/\s/g, ""), 10);
+
+          filters.priceMin = isNaN(minVal) ? null : minVal;
+          filters.priceMax = isNaN(maxVal) ? null : maxVal;
+
+          filterProjects();
+        }
+        priceMinInput.addEventListener("input", priceInputHandler);
+        priceMaxInput.addEventListener("input", priceInputHandler);
+
+        // Кнопка сброса
+        resetBtn.addEventListener("click", () => {
+          filters.priceMin = null;
+          filters.priceMax = null;
+          filters.type.clear();
+          filters.area.clear();
+          filters.size.clear();
+          filters.floors.clear();
+
+          priceMinInput.value = "";
+          priceMaxInput.value = "";
+
+          document.querySelectorAll(".filter .btn-group button.active").forEach((btn) => {
+            btn.classList.remove("active");
+          });
+
+          filterProjects();
+        });
+
+        // Инициализация - показать все
+        filterProjects();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Подробная карточка дома - Проект Г-1</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #F5F5DC;
+      color: #3c3c3c;
+    }
+   .header {
+        background-color: #2f4f2f;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: Arial, Helvetica, sans-serif;
+        height: 60px;
+      }
+      .btn-danger {
+        color: #f5f0e6;
+        font-size: 16px;
+        background-color: #2f4f2f;
+        border-radius: 4px;
+        border: 0px;
+        padding: 15px 25px;
+        margin: 10px;
+        text-decoration: none;
+      }
+      .btn-danger.active {
+        color: #F5F0E6;
+        font-size: 16px;
+        background-color: #7BB661;
+        border-radius: 4px;
+        border: 0px;
+        padding: 15px 25px;
+        margin: 10px;
+      }
+    main {
+      max-width: 960px;
+      margin: 30px auto 60px;
+      padding: 0 20px;
+      display: flex;
+      gap: 40px;
+      background-color: #F5F0E6;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      height: 400px;
+      padding: 40px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .gallery {
+      flex: 1;
+      position: relative;
+    }
+    .gallery img.main-img {
+      width: 100%;
+      border-radius: 10px;
+      height: 320px;
+      object-fit: cover;
+      user-select: none;
+    }
+    .gallery .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(87, 130, 72, 0.7);
+      border: none;
+      color: #f5f0e6;
+      font-size: 24px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+    }
+    .gallery .nav-arrow:hover {
+      background-color: #7BB661;
+    }
+    .gallery .nav-arrow.left {
+      left: 10px;
+    }
+    .gallery .nav-arrow.right {
+      right: 10px;
+    }
+    .gallery .thumbs {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .gallery .thumbs img {
+      width: 70px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.3s;
+      user-select: none;
+    }
+    .gallery .thumbs img.active {
+      border-color: #7BB661;
+    }
+    .details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px 0;
+    }
+    .details .project-name {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #000000;
+    }
+    .details .info-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      color: #3c3c3c;
+    }
+    .details .info-row svg {
+      width: 20px;
+      height: 20px;
+      fill: #7BB661;
+    }
+    .contact {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin: 20px 0 30px;
+      
+    }
+    .contact img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #7BB661;
+      background-color: #f5f0e6;
+    }
+    .contact .contact-info {
+      flex: 1;
+    }
+    .contact .contact-info button {
+      background-color: #7BB661;
+      border: none;
+      color: #f5f0e6;
+      padding: 12px 22px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .contact .contact-info button:hover {
+      background-color: #7BB661;
+    }
+    .contact .contact-info p {
+      margin: 6px 0 0;
+      font-size: 14px;
+      color: #000000;
+    }
+    .price {
+      font-size: 22px;
+      font-weight: 700;
+      border-top: 1px solid #000000;
+      padding-top: 15px;
+      color: #000000;
+    }
+    .description {
+      max-width: 960px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #000000;
+    }
+    footer {
+      color: #f5f0e6;
+      background-color: #2f4f2f;
+      padding: 10px 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      height: 150px;
+      display: grid;
+      grid-template-columns: 850px 835px 200px;
+      grid-template-rows: 75px 75px;
+      justify-content: start;
+    }
+    @media (max-width: 720px) {
+      main {
+        flex-direction: column;
+      }
+      .gallery, .details {
+        width: 100%;
+      }
+      .gallery img.main-img {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+ <header class="header">
+      <a href="Главная.html"><img src="Логотип 3.png" alt="Логотип" style="margin-left: 25px" /></a>
+      <div>
+        <a href="Проекты.html" class="btn btn-danger">Проекты</a>
+        <a href="Калькулятор.html" class="btn btn-danger">Калькулятор</a>
+        <a href="Контакты.html" class="btn btn-danger">Контакты</a>
+      </div>
+    </header>
+
+<main>
+  <section class="gallery">
+    <button class="nav-arrow left" aria-label="Предыдущее изображение">&#8592;</button>
+    <img src="1.1.jpg" alt="Проект Г-1 - вид 1" class="main-img" />
+    <button class="nav-arrow right" aria-label="Следующее изображение">&#8594;</button>
+    <div class="thumbs">
+      <img src="1.1.jpg" alt="Вид 1" class="active" />
+      <img src="1.2.jpg" alt="Вид 2" />
+      <img src="1.3.jpg" alt="Вид 3" />
+      <img src="1.4.jpg" alt="Планировка" />
+    </div>
+  </section>
+
+  <section class="details">
+    <div>
+      <div class="project-name">Проект Г-1</div>
+      <div class="info-row">
+        <img src="Услуги 2 3.png" alt="">
+        <span>Площадь: <strong>81 м²</strong></span>
+      </div>
+      <div class="info-row">
+        <img src="Услуги 3 3.png" alt="">
+        <span>Габариты: <strong>13,5 x 9,9 м</strong></span>
+      </div>
+    </div>
+
+    <div class="contact">
+      <img src="Контакты 3 2 (1).png" alt="Директор Евгений" />
+      <div class="contact-info">
+        <button type="button" onclick="alert('Связь с директором Евгением')">Узнать стоимость</button>
+        <p>директор <strong>Евгений</strong><br />ответит на все ваши вопросы</p>
+      </div>
+    </div>
+
+    <div class="price">
+      Стоимость строительства<br />
+      <span style="font-size: 28px; color: #000000;">от 2.442.960 р.</span>
+    </div>
+  </section>
+</main>
+
+<section class="description" aria-label="Описание проекта">
+  <h3>
+    Проект здания включает покрытие пола из ОСБ на лагах 50x150 мм. Высота потолков составляет 2,5 м на первом этаже и 2,3 м на втором.
+    Каркас стен выполнен из пиломатериала 50x150 мм с камерной сушкой и естественной влажностью, а также усилен элементами пространственной жесткости.
+    Для кровли использован крашенный профнастил со стропильной системой из 50x150 мм.
+    Внутренняя отделка в проекте отсутствует, а наружная отделка выполнена из ОСБ.
+    Утепление также не предусмотрено.
+  </h3>
+</section>
+
+ <footer>
+      <div style="display: flex; align-items: center; gap: 20px">
+        <img src="Логотип 2 1.png" alt="" />
+        <p>КаркасДом.ru</p>
+      </div>
+      <div>
+        <p>Проекты</p>
+        <p>Калькулятор</p>
+        <p>Контакты</p>
+      </div>
+      <div>
+        <p>Мы в сети:</p>
+        <img src="Почта 2.png" />
+        <img src="Тг.png" />
+        <img src="Вп.png" />
+      </div>
+      <div style="display: grid; align-items: end">
+        <p>©2025 Россия,г.Красноярск. Все права защищены </p>
+      </div>
+    </footer>
+
+<script>
+  (() => {
+    const images = [
+      {src: "1.1.jpg", alt: "Проект Г-1 - вид 1"},
+      {src: "1.2.jpg", alt: "Проект Г-1 - вид 2"},
+      {src: "1.3.jpg", alt: "Проект Г-1 - вид 3"},
+      {src: "1.4.jpg", alt: "Планировка проекта Г-1"}
+    ];
+    let currentIndex = 0;
+
+    const mainImg = document.querySelector('.gallery img.main-img');
+    const thumbs = document.querySelectorAll('.gallery .thumbs img');
+    const btnLeft = document.querySelector('.gallery .nav-arrow.left');
+    const btnRight = document.querySelector('.gallery .nav-arrow.right');
+
+    function updateGallery(index) {
+      currentIndex = index;
+      mainImg.src = images[index].src;
+      mainImg.alt = images[index].alt;
+      thumbs.forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === index);
+      });
+    }
+
+    btnLeft.addEventListener('click', () => {
+      const newIndex = (currentIndex - 1 + images.length) % images.length;
+      updateGallery(newIndex);
+    });
+
+    btnRight.addEventListener('click', () => {
+      const newIndex = (currentIndex + 1) % images.length;
+      updateGallery(newIndex);
+    });
+
+    thumbs.forEach((thumb, i) => {
+      thumb.addEventListener('click', () => {
+        updateGallery(i);
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
